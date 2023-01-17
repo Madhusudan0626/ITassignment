@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Quick sort</title>
+    <script>
+        function test(){
+            var a=document.getElementById('t1').value
+            var result
+            if(a.length==0)
+            {
+                alert('please enter some number separate with comma...')
+                return;
+            }
+            a=a.replace(/,/g,' ')
+            var b=a.split(' ')
+            for(var i=0;i<b.length;i++)
+            {
+                if(isNaN(b[i]))
+                {
+                    alert('array datatype must be integer...')
+                    return
+                }
+                result=(b[i]-Math.floor(b[i]))===0
+                if(!result)
+                {
+                    alert('array datatype must be integer...')
+                    return
+                }
+                b[i]=parseInt(b[i])
+                // document.getElementById('pid').innerHTML+=String(b[i].toString(10)+'<br>')
+            }
+            makesort(b,0,b.length)
+            document.getElementById('pid').innerHTML=String('After applying insertion sort : '+'<br>')
+            for(var i=0;i<b.length;i++)
+            {
+                document.getElementById('pid').innerHTML+=String(b[i].toString(10)+'  ')
+            }
+            document.getElementById('pid').innerHTML+='<BR>'
+        }
+
+        function makesort(b,lb,ub){
+            
+            var i , j , temp
+
+            for(i=0;i<ub;i++)
+            {
+                temp=b[i]
+
+                j=i-1
+
+                while(j>=0 && temp<=b[j])
+                {
+                    b[j+1]=b[j]
+                    j=j-1
+                }
+                b[j+1]=temp
+            }
+        }
+    </script>
+    </head>
+    <body>
+        <div class="div1">
+           <input type="text" id="t1">
+           <span>Array (should seperated by comma)</span>
+        </div>
+        <br><br><button class="button1" onclick="test()">insertion sort</button>
+
+        <div class="div2">
+            <br><br>
+            <p id="pid"></p>
+        </div>
+    </body>
+</html>

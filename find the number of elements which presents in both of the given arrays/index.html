@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>find the number of elements which presents in both of the given arrays</title>
+    <script>
+        function test()
+        {
+            var a=document.getElementById("name1").value
+            var b=document.getElementById("name2").value
+            var ar1=getarray(a)
+            var ar2=getarray(b)
+
+            if(ar1.length == 0 || ar2.length == 0)
+            alert("array datatype must be integer...")
+            else{
+            const seta=new Set(ar1)
+            const setb=new Set(ar2)
+
+            ar1=Array.from(seta)
+            ar2=Array.from(setb)
+
+
+            var result=0
+            console.log(seta)
+            console.log(setb)
+
+            for(var i=0;i<ar1.length;i++)
+            {
+                for(var j=0;j<ar2.length;j++)
+                {
+                    if(ar1[i] === ar2[j])
+                    {
+                        result++;
+                    }
+                }
+            }
+            document.getElementById("pid").innerHTML="Number of element in both arrays (excluding duplicate): "+result
+        }
+        }
+
+        function getarray(a)
+        {
+            var result
+            if(a.length==0)
+            {
+                alert('please enter some number separate with comma...')
+                return;
+            }
+            a=a.replace(/,/g,' ')
+            var b=a.split(' ')
+            for(var i=0;i<b.length;i++)
+            {
+                if(isNaN(b[i]))
+                {
+                    alert('array datatype must be integer...')
+                    return
+                }
+            }
+            return b
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+
+        Enter the array elements here of the first array<br>
+        <input type="text" id="name1"><br><br>
+
+        Enter the array elements here of the second array<br>
+        <input type="text" id="name2"><br><br>
+
+
+        <button id="btn" onclick="test()">Check</button>
+        <p id="pid"></p>
+
+    </div>
+</body>
+</html>

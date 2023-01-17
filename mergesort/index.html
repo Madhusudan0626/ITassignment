@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mergesort</title>
+    <script>
+        
+        function test()
+        {
+            var a=document.getElementById("name1").value
+            var ar,br
+            ar=getarray(a)
+            ar=ar.map(toNumber)
+            
+            br=new Array(ar.length)
+            
+            
+            ar=mergersort(ar)
+            console.log(ar)
+        }
+
+        function mergersort(ar){
+            if(ar.length<2)
+            return ar
+            const mid = Math.floor(ar.length /2 )
+
+            const leftar=ar.slice(0,mid)
+            const rightar=ar.slice(mid)
+            return merge(mergersort(leftar),mergersort(rightar))
+        }
+
+        function merge(leftar,rightar)
+        {
+            const sortarr=[]
+
+            while(leftar.length && rightar.length)
+            {
+                if(leftar[0] <= rightar[0])
+                {
+                    sortarr.push(leftar.shift())
+                }
+                else
+                {
+                    sortarr.push(rightar.shift())
+                }
+            }
+            return [...sortarr, ...leftar, ...rightar]
+        }
+
+        function toNumber(value) {
+         return Number(value);
+        }
+        function getarray(a){
+            
+            if(a.length===0)
+            {
+                alert('please enter some number separate with comma...')
+                return;
+            }
+            else{
+
+                a=a.replace(/,/g,' ')
+                var b=a.split(' ')
+                for(var i=0;i<b.length;i++){
+                    if(isNaN(b[i]))
+                    {
+                        alert('array datatype must be integer...')
+                        return
+                    }
+                }
+                return b
+            }
+            
+        }
+    </script>
+</head>
+<body>
+    Enter the array (separated by comma ) <br><br>
+    <input type="text" id="name1"><br><br>
+    <button onclick="test()" id="btn">Click</button>
+</body>
+</html>

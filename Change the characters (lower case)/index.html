@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change the characters (lower case)</title>
+    <script>
+        function test()
+        {
+            var a=document.getElementById("name1").value
+
+            a=a.toLowerCase()
+            
+            var result = [];
+            for (var i = 0; i < a.length; i++)
+            {
+                var char_order = a.charCodeAt(i) - 'a'.charCodeAt(0),
+                change_char = 25 - char_order + 'a'.charCodeAt(0);
+                result.push(String.fromCharCode(change_char));
+            }
+            result=result.join("");
+            document.getElementById("pid").innerHTML=String("Result : "+result)
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        enter the string <br>
+        <input type="text" id="name1">
+        <br><br><button id="btn" onclick="test()">click</button>
+        <br><br><p id="pid"></p>
+    </div>
+</body>
+</html>
