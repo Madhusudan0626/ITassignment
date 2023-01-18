@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Quick sort</title>
+        <link rel="stylesheet" href="style.css">
+    <script>
+        function test(){
+            var a=document.getElementById('t1').value
+            var result
+            if(a.length==0)
+            {
+                alert('please enter some number separate with comma...')
+                return;
+            }
+            a=a.replace(/,/g,' ')
+            var b=a.split(' ')
+            for(var i=0;i<b.length;i++)
+            {
+                if(isNaN(b[i]))
+                {
+                    alert('array datatype must be integer...')
+                    return
+                }
+                result=(b[i]-Math.floor(b[i]))===0
+                if(!result)
+                {
+                    alert('array datatype must be integer...')
+                    return
+                }
+                b[i]=parseInt(b[i])
+                // document.getElementById('pid').innerHTML+=String(b[i].toString(10)+'<br>')
+            }
+            makesort(b,0,b.length-1)
+            document.getElementById('pid').innerHTML+=String('After applying quicksort : '+'<br>')
+            for(var i=0;i<b.length;i++)
+            {
+                document.getElementById('pid').innerHTML+=String(b[i].toString(10)+'  ')
+            }
+            document.getElementById('pid').innerHTML+='<BR>'
+        }
+
+        function partition(b,lb,ub){
+            var pivot=b[lb]
+            var start=lb
+            var end=ub,temp=0
+            while(start<end)
+            {
+                while(b[start]<=pivot)
+                    start++;
+                while(b[end]>pivot)
+                    end--;
+                if(start<end)
+                    [b[start],b[end]]= [b[end],b[start]]
+            }
+            [b[lb],b[end]]=[b[end],b[lb]]
+            return end
+        }
+
+        function makesort(b,lb,ub){
+            var loc=0
+            if(lb<ub){
+                loc=partition(b,lb,ub)
+                makesort(b,lb,loc-1)
+                makesort(b,loc+1,ub)
+            }
+        }
+    </script>
+    </head>
+    <body>
+        <div class="div1">
+           <input type="text" id="t1">
+           <span>Array</span>
+        </div>
+        <br><br><button class="button1" onclick="test()">QUICKSORT</button>
+
+        <div class="div2">
+            <br><br>
+            <p id="pid"></p>
+        </div>
+    </body>
+</html>
