@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex to ascii and vice versa</title>
+
+    <script>
+
+        function asciitohex()
+        {
+            var a = document.getElementById('txt1').value
+
+            var hex=""
+            var temp
+
+            var b=a.split('')
+            for(var i=0;i<a.length;i++)
+            {
+                temp=b[i].charCodeAt(0).toString(16)
+                hex=hex+temp
+            }
+            alert(hex.trim())
+        }
+
+        function hextoascii(){
+            var a = document.getElementById('txt2').value
+            
+            var ascii=""
+
+            for(var i=0;i<a.length;i+=2){
+                var part=a.substring(i,i+2)
+
+                var ch=String.fromCharCode(parseInt(part,16))
+                ascii+=ch
+            }
+            alert(ascii)
+        }
+
+    </script>
+</head>
+<body>
+    Enter the string : <input type="text" id="txt1">
+    <br>
+    <br><button onclick="asciitohex()">ASCII TO HEX</button>
+    <br><br>
+    <p id="pid1"></p>
+    Enter the HEX-value : <input type="text" id="txt2">
+    <br>
+    <br><button onclick="hextoascii()">HEX TO ASCII</button>
+    <p id="pid2"></p>
+</body>
+</html>

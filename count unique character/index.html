@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count the unique character from string</title>
+    <script>
+        function test(){
+            var a=document.getElementById("txt").value
+            var count=0
+            if(a=='')
+            alert("fill the fields")
+            else
+            {
+                var unique=''
+                for(var i=0;i<a.length;i++){
+                    var flag=false
+                    for(var j=0;j<unique.length;j++)
+                    {
+                        if(a[i]==unique[j]){
+                            flag=true
+                            
+                            break
+                        }
+                    }
+                    if(!flag){
+                        count++
+                        unique+=a[i]
+                    }
+                }
+            }
+            document.getElementById("pid").innerHTML=String("There has "+count.toString(10)+" number of unique characters and these are "+unique)
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        Enter the string <input type="text" id="txt">
+        <br><br>
+        <button id="btn" onclick="test()">Sumbit</button>
+        <br>
+        <p id="pid"></p>
+    </div>
+</body>
+</html>
